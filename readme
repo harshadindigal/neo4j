@@ -1,0 +1,21 @@
+CREATE (n:DEVICE_ID {name:'DEVICE_ID'});
+CREATE (n:EFIN {name:'EFIN'});
+CREATE (n:EIN {name:'EIN'});
+CREATE (n:IP {name:'IP'});
+CREATE (n:PHONE {name:'PHONE'});
+CREATE (n:PTIN {name:'PTIN'});
+CREATE (n:RETURN {name:'RETURN'});
+CREATE (n:SSN {name:'SSN'});
+CREATE (n:TIN {name:'TIN'});
+CREATE (n:UNVERIFIED {name:'UNVERIFIED'});
+CREATE (n:ZIP12 {name:'ZIP12'});
+MATCH (a:SSN),(b:EFIN) WHERE a.name = 'SSN' AND b.name = 'EFIN' CREATE (a)-[r:AUTHORIZED_FOR]->(b);
+MATCH (a:EIN),(b:EIN) WHERE a.name = 'EIN' AND b.name = 'EIN' CREATE (a)-[r:BENEF_OF]->(b);
+MATCH (a:SSN),(b:EIN) WHERE a.name = 'SSN' AND b.name = 'EIN' CREATE (a)-[r:BENEF_OF]->(b);
+MATCH (a:TIN),(b:EIN) WHERE a.name = 'TIN' AND b.name = 'EIN' CREATE (a)-[r:BENEF_OF]->(b);
+MATCH (a:TIN),(b:SSN) WHERE a.name = 'TIN' AND b.name = 'SSN' CREATE (a)-[r:BENEF_OF]->(b);
+MATCH (a:TIN),(b:TIN) WHERE a.name = 'TIN' AND b.name = 'TIN' CREATE (a)-[r:BENEF_OF]->(b);
+[2/26/20, 10:09:37 AM] Deb: MATCH (a1:SSN),(b:EFIN) WHERE a.name = 'SSN' AND b.name = 'EFIN' CREATE (a1)-[r:AUTHORIZED_FOR]->(b) ;
+
+
+MATCH (a1:SSN),(b:EFIN) WHERE a.name = 'SSN' AND b.name = 'EFIN' CREATE (a1)-[r:AUTHORIZED_FOR]->(b);
